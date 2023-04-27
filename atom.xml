@@ -4,7 +4,7 @@ layout: page
 
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-  <meta name="google-site-verification" content="a9VxRAJn51w4nwv0r9Lsw7-h96OvHneRvAFe9vap-HY" />
+ <meta name="google-site-verification" content="a9VxRAJn51w4nwv0r9Lsw7-h96OvHneRvAFe9vap-HY" />
  <title>{{ site.title }}</title>
  <link href="{{ site.url }}/atom.xml" rel="self"/>
  <link href="{{ site.url }}/"/>
