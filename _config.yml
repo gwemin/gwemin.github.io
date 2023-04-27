@@ -41,5 +41,4 @@ theme: jekyll-dash
 plugins:
   - liquid-md5
   - jekyll/tagging
-
-
+  - jekyll-sitemap
