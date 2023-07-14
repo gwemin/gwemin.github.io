@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+<html class="direction--ltr"lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>gwemin | 나 자신이 만족하는 개발자가 되기위해서 도전하는 청년입니당~~</title>
+<meta name="generator" content="Jekyll v4.3.2" />
+<meta property="og:title" content="gwemin" />
+<meta name="author" content="gwemin" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="나 자신이 만족하는 개발자가 되기위해서 도전하는 청년입니당~~" />
+<meta property="og:description" content="나 자신이 만족하는 개발자가 되기위해서 도전하는 청년입니당~~" />
+<link rel="canonical" href="https://gwemin.github.io/atom.xml" />
+<meta property="og:url" content="https://gwemin.github.io/atom.xml" />
+<meta property="og:site_name" content="gwemin" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="gwemin" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","author":{"@type":"Person","name":"gwemin"},"description":"나 자신이 만족하는 개발자가 되기위해서 도전하는 청년입니당~~","headline":"gwemin","url":"https://gwemin.github.io/atom.xml"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/assets/css/style.css">
+  <link rel="icon" type="image/png" href="/assets/favicon.png" />
+  <link rel="stylesheet" href="/assets/css/magnific-popup.css"><link type="application/atom+xml" rel="alternate" href="https://gwemin.github.io/feed.xml" title="gwemin" /><script src="https://code.jquery.com/jquery-3.2.0.min.js"></script> 
+  <script src="/assets/js/jquery.magnific-popup.js"></script>
+</head>
+<body><div class="site-header">
+  <div class="wrapper">
+    <a class="site-title" rel="author" href="/">gwemin<b class="command_prompt"></b><b class="blinking_cursor">_</b></a>
+    <span class="social_links">
+        
+        
+        <a class="color-yellow-hover" href="https://github.com/gwemin"><i class="fab fa-github-square"></i></a>
+        
+        
+    </span>
+  </div>
+</div>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+ <meta name="google-site-verification" content="a9VxRAJn51w4nwv0r9Lsw7-h96OvHneRvAFe9vap-HY" />
+ <title>gwemin</title>
+ <link href="https://gwemin.github.io/atom.xml" rel="self"/>
+ <link href="https://gwemin.github.io/"/>
+ <updated>2023-07-14T01:46:06+00:00</updated>
+ <id>https://gwemin.github.io</id>
+ <author>
+   <name></name>
+   <email></email>
+ </author>
+
+ 
+ <entry>
+   <title>Validation, Data Binding</title>
+   <link href="https://gwemin.github.io/2023/02/13/Validation,-Data-binding.html"/>
+   <updated>2023-02-13T00:00:00+00:00</updated>
+   <id>https://gwemin.github.io/2023/02/13/Validation, Data binding</id>
+   <content type="html">&lt;h1 id=&quot;validation-data-binding&quot;&gt;Validation, Data binding&lt;/h1&gt;
+
+&lt;p&gt;날짜: 2022-08-13
+태그: Spring&lt;/p&gt;
+
+&lt;h2 id=&quot;validation-in-spring&quot;&gt;Validation in spring&lt;/h2&gt;
+
+&lt;h3 id=&quot;validation-이란&quot;&gt;Validation 이란?&lt;/h3&gt;
+
+&lt;p&gt;한국말로는 유효성검증&lt;/p&gt;
+
+&lt;p&gt;주로 사용자 또는 서버의 요청(http request) 내용에서 잘못된 내용이 있는지 확인하는 단계를 뜻함.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;validation의-종류&quot;&gt;Validation의 종류&lt;/h3&gt;
+
+&lt;p&gt;학문적으로 여러 세부적인 단계들이 있기도 하지만 실제로 개발자가 주로 챙겨야하는 검증은 크게 두 종류로 나뉜다.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;데이터-검증&quot;&gt;데이터 검증&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;필수 데이터의 존재 유무&lt;/li&gt;
+  &lt;li&gt;문자열의 길이나 숫자형 데이터의 경우 값의 범위&lt;/li&gt;
+  &lt;li&gt;email, 신용카드 번호 등 특정 형식에 맞춘 데이터&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;비지니스-검증&quot;&gt;비지니스 검증&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;서비스에 정책에 따라 데이터를 확인하여 검증&lt;/li&gt;
+  &lt;li&gt;예) 배달앱인 경우 배달 요청을 할 때 해당 주문건이 결제 완료 상태인지 확인 등&lt;/li&gt;
+  &lt;li&gt;경우에 따라 외부 API를 호출하거나 DB의 데이터까지 조회하여 검증하는 경우도 존재&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h3 id=&quot;spring의-validation&quot;&gt;Spring의 Validation&lt;/h3&gt;
+
+&lt;p&gt;스프링은 웹 레이어에 종속적이지 않은 방법으로 밸리데이션을 하려고 의도하고 있으며 주로 아래 두가지 방법을 활용하여 밸리데이션 진행(둘다 데이터 검증에 가까움)&lt;/p&gt;
+
+&lt;h3 id=&quot;java-bean-validation&quot;&gt;Java Bean Validation&lt;/h3&gt;
+
+&lt;p&gt;JavaBean 기반으로 간편하게 개별 데이터를 검증&lt;/p&gt;
+
+&lt;p&gt;요즘에 가장 많이 활용되는 방법 중 하나이며, 아래 코드처럼 JavaBean 내에 어노테이션으로 검증방법을 명시함&lt;/p&gt;
+
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;MemberCreationRequest&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+		&lt;span class=&quot;nd&quot;&gt;@NotBlank&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;message&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;이름을 정해주세요&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+		&lt;span class=&quot;nd&quot;&gt;@Size&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;max&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;64&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;message&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;이름의 최대 길이는 64자 입니다.&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+		&lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+		&lt;span class=&quot;nd&quot;&gt;@Min&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;나이는 0보다 커야 합니다.&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+		&lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;age&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+		&lt;span class=&quot;nd&quot;&gt;@Email&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;이메일 형식이 잘못되었습니다.&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+		&lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;email&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+		
+		&lt;span class=&quot;c1&quot;&gt;// the usual getters and setters....&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;위처럼 요청 dto에 어노테이션으로 명시 후 아래처럼 @Valid 어노테이션을 해당 @RequestBody에 달게 되면, Java Bean Validation을 수행한 후 문제가 없을 때만 메서드 내부로 진입이 된다.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;검증 중 실패가 발생하며? : MethodArgumentNotValidException이 발생&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nd&quot;&gt;@PostMapping&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;value&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;/member&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;MemberCreationResponse&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;createMember&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;
+	&lt;span class=&quot;nd&quot;&gt;@Valid&lt;/span&gt; &lt;span class=&quot;nd&quot;&gt;@RequestBody&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;final&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;MemberCreationRequest&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;memberCreationRequest&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+		&lt;span class=&quot;c1&quot;&gt;// member creation logics here....&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h3 id=&quot;spring-validator-인터페이스-구현을-통한-validation&quot;&gt;Spring validator 인터페이스 구현을 통한 validation&lt;/h3&gt;
+
+&lt;p&gt;위처럼 Person이라는 javaBean 객체가 있을때, 아래는 해당 인스턴스에서만 활용되는 validator 이다.&lt;/p&gt;
+
+&lt;p&gt;인터페이스에 있는 두개의 메서드는 아래와 같은 역할을 한다.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;supports : 이 validator가 동작할 조건을 정의, 주로 clas의 타입을 비교&lt;/li&gt;
+  &lt;li&gt;validate : 원하는 검증을 진행한다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;PersonValidator&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;implements&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Validator&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+		&lt;span class=&quot;cm&quot;&gt;/** 
+			This Validator validates only Person instances
+
+		*/&lt;/span&gt;
+		&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;boolean&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;supports&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;Class&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;clazz&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+			&lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Person&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;class&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;equals&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;clazz&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+		&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+		&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;validate&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;Object&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;obj&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Errors&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;e&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+			&lt;span class=&quot;nc&quot;&gt;ValidationUtils&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;rejectIfEmpty&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;e&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;name&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;name.empty&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+			&lt;span class=&quot;nc&quot;&gt;Person&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;p&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;Person&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;obj&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+			&lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;p&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;getAge&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+				&lt;span class=&quot;n&quot;&gt;e&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;rejectValue&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;age&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;negativevalue&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+			&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;p&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;getAge&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;110&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+					&lt;span class=&quot;n&quot;&gt;e&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;rejectValue&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;age&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;too.darn.old&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+			&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+		&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;hr /&gt;
+
+&lt;h2 id=&quot;validation-수행-시-주의사항-및-패턴&quot;&gt;Validation 수행 시 주의사항 및 패턴&lt;/h2&gt;
+
+&lt;h3 id=&quot;주의사항&quot;&gt;※주의사항※&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;validation이 너무 여러 군데 흩어져있으며 테스트 및 유지보수성이 떨어짐
+    &lt;ul&gt;
+      &lt;li&gt;중복된 검증 : 정책 변경 시에 모든 중복 코드를 수정해야 함&lt;/li&gt;
+      &lt;li&gt;다른 검증 : 여러 군데서 다른 정책을 따르는 검증이 수행될 수 있음&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;가능한 validaton은 로직 초기에 수행 후 실패 시에는 exception을 던지는 편이 처리가 편리함&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;실무-활용-패턴&quot;&gt;실무 활용 패턴&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;필자의 주 사용 패턴
+    &lt;ul&gt;
+      &lt;li&gt;요청 dto에서 Java Bean Validation으로 단순 데이터(유무, 범위, 형식 등)를 1차 검증&lt;/li&gt;
+      &lt;li&gt;로직 초기에 2차로 비즈니스 검증 수행 후 실패 시에는 Custom Exception(ErrorCode,, ErrorMessage를 입력) 해서 예외를 던지도록 하고 예외처리하여 응답 생성&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Spring validator의 (제가 생각하는) 장단점
+    &lt;ul&gt;
+      &lt;li&gt;장점 : Java Bean Validation에 비해 조금 더 복잡한 검증이 가능&lt;/li&gt;
+      &lt;li&gt;단점
+        &lt;ul&gt;
+          &lt;li&gt;Validation을 수행하는 코드를 찾기가 (상대적으로) 어렵다.&lt;/li&gt;
+          &lt;li&gt;완전히 데이터만 검증하는 것이 아니기 때문에 일부 비즈니스적인 검증이 들어가는 경우가 잇다.
+            &lt;ul&gt;
+              &lt;li&gt;→ 이 경우 비즈니스 검증 로직이 여러 군데로 흩어지기 때문에 잘못된 검증(중복 검증, 다른 정책을 따르는 검증)을 수행할 가능성이 높아짐&lt;/li&gt;
+            &lt;/ul&gt;
+          &lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;하지만 이 내용들을은 필자의 의견에 가까우며, 팀 내에서 주로 사용하는 검증 패턴을 따르는것이 좋다.&lt;/strong&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;data-binding&quot;&gt;Data Binding&lt;/h2&gt;
+
+&lt;p&gt;사용자나 외부 서버의 요청 데이터를 특정 도메인 객체에 저장해서 우리 프로그램에 Request에 담아주는 것을 뜻한다.&lt;/p&gt;
+
+&lt;h3 id=&quot;converters-t-interface&quot;&gt;Converter&amp;lt;S, T&amp;gt; Interface&lt;/h3&gt;
+
+&lt;p&gt;S(Source)라는 타입을 받아서 T(Target)이라는 타입으로 변환해주는 interface&lt;/p&gt;
+
+&lt;p&gt;인터페이스의 모양은 아래와 같다.&lt;/p&gt;
+
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kn&quot;&gt;package&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;org.springframework.core.convert.converter&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+
+&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;interface&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Converter&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;S&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;T&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+	&lt;span class=&quot;no&quot;&gt;T&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;convert&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;S&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;source&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;제가 활용해봤던 경험 : 파라미터에 json 형식 문자열이 담겨오는 경우 해당 문자열을 곧바로 특정 dto에 담고 싶을 때 사용&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;// 요청&lt;/span&gt;
+&lt;span class=&quot;no&quot;&gt;GET&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;user&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;info&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;auth&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;user&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;id&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;123&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;name&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;Paul&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;c1&quot;&gt;// 유저 객체&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;XAuthUser&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+		&lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;id&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+		&lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+		
+		&lt;span class=&quot;c1&quot;&gt;// the usual getters and setters&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;nd&quot;&gt;@GetMapping&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;/user-info&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;UserInfoResponse&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;getUserInfo&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;
+	&lt;span class=&quot;nd&quot;&gt;@RequestHeader&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;x-auth-user&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;XAuthUser&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;xAuthUser&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;){&lt;/span&gt;
+		&lt;span class=&quot;c1&quot;&gt;// get User Info logic here....&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;위 처럼 헤더에 담긴 json 형식 문자열을 XAuthUser에 바로담고 싶은 경우 아래와 같이 Converter를 Bean으로 등록하면 된다.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nd&quot;&gt;@Component&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;XAuthUserConverter&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;implements&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Converter&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;String&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;XAuthUser&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+	&lt;span class=&quot;nd&quot;&gt;@Override&lt;/span&gt;
+	&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;XAuthUser&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;convert&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;source&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+		&lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;objectMapper&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;readValue&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;source&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;XAuthUser&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;class&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+	&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;이와 비슷하게 PathParameter나 기타 특수한 경우의 데이터를 특정 객쳉 담고 싶은 경우&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Converter를 만들어서 Spring에 Bean으로 등록&lt;/li&gt;
+  &lt;li&gt;스프링 내에 ConversionService라는 내장된 서비스에서 Converter 구현체 Bean들을 Conveter 리스트에 등록&lt;/li&gt;
+  &lt;li&gt;외부데이터가 들어오고, Source Class Type → Target Class Type이 Converter에 등록된 형식과 일치하면 해당 Converter가 동작하는 원리&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h3 id=&quot;formatter&quot;&gt;Formatter&lt;/h3&gt;
+
+&lt;p&gt;특정 객체 String간의 변환을 담당&lt;/p&gt;
+
+&lt;p&gt;아래 샘플 코드는 Date ↔️ String 간의 변환을 수행하는 Formatter이다.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;print : API 요청에 대한 응답을 줄때, Date 형식으로 된 데이터를 특정 locale에 맞춘 String으로 변환&lt;/li&gt;
+  &lt;li&gt;parse : API 요청을 받아올 때, String으로 된 “2021-01-01 13:15:00” 같은 날짜 형식의 데이터를 Date로 변환 하도록 함&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kn&quot;&gt;package&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;org.springframework.format.datetime&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+
+&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;final&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;DateFormatter&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;implements&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Formatter&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;Date&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+		&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;Date&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;date&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Locale&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;locale&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+			&lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;getDateFormat&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;locale&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;format&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;date&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+		&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+		&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Date&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;parse&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;formatted&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Locale&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;locale&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;throws&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;ParseException&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+			&lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;getDateFormat&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;locale&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;parse&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;formatted&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+		&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+		&lt;span class=&quot;c1&quot;&gt;// getDateFormat 등 일부 구현은 핵심에 집중하기 위해 생략....&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Formatter도 Converter와 마찬가지로 Spring Bean으로 등록하면 자동으로 ConversionService에 등록시켜 주기 때문에 필요 (요청/응답 시 해당 데이터 타입이 있는 경우)에 따라 자동으로 동작하게 된다.&lt;/p&gt;
+</content>
+ </entry>
+ 
+ <entry>
+   <title>2022 OSAM 해커톤</title>
+   <link href="https://gwemin.github.io/2022/09/17/OSAM-%ED%95%B4%EC%BB%A4%ED%86%A4.html"/>
+   <updated>2022-09-17T00:00:00+00:00</updated>
+   <id>https://gwemin.github.io/2022/09/17/OSAM 해커톤</id>
+   <content type="html">&lt;h1 id=&quot;osam-해커톤-2022-준비&quot;&gt;OSAM 해커톤 2022 준비~&lt;/h1&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;2022년-osam-해커톤-참가&quot;&gt;2022년 OSAM 해커톤 참가&lt;/h2&gt;
+
+&lt;p&gt;2022년 05월 16일 입소하여 현재 일병 2호봉 입니다.&lt;/p&gt;
+
+&lt;p&gt;군 복무하면서 자기계발에 초점을 맞추고 지내던중&lt;/p&gt;
+
+&lt;p&gt;“&lt;strong&gt;군대 소프트웨어&lt;/strong&gt;” 키워드로 구글링을 해보다가  &lt;strong&gt;OSAM&lt;/strong&gt; 을 알게 되었고&lt;/p&gt;
+
+&lt;p&gt;신청하게 되었습니다.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;참가자-선발-기준&quot;&gt;참가자 선발 기준&lt;/h2&gt;
+
+&lt;p&gt;&lt;img src=&quot;/public/media/OSAM.png&quot; alt=&quot;OSAM.PNG&quot; /&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;이론평가--코딩테스트&quot;&gt;이론평가 &amp;amp; 코딩테스트&lt;/h2&gt;
+
+&lt;h3 id=&quot;이론평가&quot;&gt;이론평가&lt;/h3&gt;
+
+&lt;p&gt;&lt;strong&gt;일단 한가지 말씀드리자면 전혀 걱정하실 필요 없습니다.&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;왜냐하면 &lt;strong&gt;이론평가&lt;/strong&gt;는 굉장히 쉽습니다. ( 필자는 2문제 틀려서 95점 맞았습니다 )&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;전공자&lt;/strong&gt;라면 충분히 풀고 &lt;strong&gt;비전공자&lt;/strong&gt; 라도 공부를 관련 분야 공부하였다면 충분히 풀수 있습니다.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;코딩테스트&quot;&gt;코딩테스트&lt;/h3&gt;
+
+&lt;p&gt;&lt;strong&gt;코딩테스트&lt;/strong&gt; 는 진짜 깜짝 놀랐습니다.&lt;/p&gt;
+
+&lt;p&gt;제가 알고리즘을 공부를 한적이 없어서 3주전 부터 “&lt;strong&gt;이것이 취업을 위한 코딩 테스트다&lt;/strong&gt;” 
+도서를 구매하여 이론을 공부 하는데 문제를 푸는데 어려움이 있었습니다.&lt;/p&gt;
+
+&lt;p&gt;그런데 타블로그에서 쉽다고 하여 &lt;strong&gt;코딩테스트 마감전날&lt;/strong&gt; 공부안하고 막무가내로 코테를 치렀습니다.&lt;/p&gt;
+
+&lt;p&gt;그런데 문제의 &lt;strong&gt;티어&lt;/strong&gt;는 대략 &lt;strong&gt;골드 상위권&lt;/strong&gt; 정도 되었습니다.&lt;/p&gt;
+
+&lt;p&gt;구현 문제를 풀다가 보니까 1시간 30분이 지나서 실행을 눌러보니까 에러가 떠서 “포기해야겠다…”
+라고 생각하여 &lt;strong&gt;0점&lt;/strong&gt; 으로 제출을 하였습니다.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;개발계획서&quot;&gt;개발계획서&lt;/h2&gt;
+
+&lt;p&gt;그래도 개발계획서는 정성껏 작성하여 제출하였습니다. 주제는 &lt;strong&gt;또래 상볌을 위한 반응형 웹&lt;/strong&gt; 이었습니다.&lt;/p&gt;
+
+&lt;p&gt;용사가 또래 상담병에게 상담받고 싶을 때 개인 정비시간 때 상담을 진행하는데 스마트폰, PC를 이용하여 이용할 수 있게 기획하게 되었습니다.&lt;/p&gt;
+
+&lt;p&gt;사용할 라이브러리, DB, 클라우드, 언어(라이브러리,템플릿) 들을 작성하여 제출하였습니다.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;결과&quot;&gt;결과&lt;/h2&gt;
+
+&lt;p&gt;기대안하고 9월 7일 수요일에 결과를 확인해보니까 명단에 제 이름이 있는걸 보고 놀랐습니다.&lt;/p&gt;
+
+&lt;p&gt;같이 신청한 &lt;strong&gt;동기1명&lt;/strong&gt; 과 &lt;strong&gt;선임1명&lt;/strong&gt; 도 붙어서 참가자들이 별로 없었나 보구나 생각하였습니다.&lt;/p&gt;
+
+&lt;p&gt;그런데 실력차이가 극과극 일 것 같아서 걱정이 됩니다.&lt;/p&gt;
+
+&lt;p&gt;저는 프로젝트를 협업하여 해본적이 없어서 걱정입니다. 그래도 최선을 다해 할 생각입니다.&lt;/p&gt;
+
+&lt;p&gt;그러니까 여러분들도 &lt;strong&gt;군복무&lt;/strong&gt; 하면서 &lt;strong&gt;자기계발&lt;/strong&gt;을 할 수 있는 기회를 놓치지 않았으며 좋겠습니다.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h2 id=&quot;현재-진행사항&quot;&gt;현재 진행사항&lt;/h2&gt;
+
+&lt;p&gt;&lt;strong&gt;9월 16일&lt;/strong&gt;부터 휴가를 신청하였기에 &lt;strong&gt;9월 22일&lt;/strong&gt; 부터 &lt;strong&gt;10월 27일&lt;/strong&gt; 까지&lt;/p&gt;
+
+&lt;p&gt;본격적으로 시작하기에 휴가를 가서 어느정도 준비를 할 수 있어서 다행이었습니다.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;웹 기반 통합개발환경&lt;/strong&gt;, &lt;strong&gt;가상머신 환경&lt;/strong&gt;을 제공해주기에 사지방에 대한 걱정은 사라졌습니다.&lt;/p&gt;
+
+&lt;h2 id=&quot;군장병-여러분들도-기회를-놓치지마세요--생각보다-쉽습니다&quot;&gt;군장병 여러분들도 기회를 놓치지마세요!! ( 생각보다 쉽습니다.)&lt;/h2&gt;
+</content>
+ </entry>
+ 
+ <entry>
+   <title>DevOps 개념</title>
+   <link href="https://gwemin.github.io/2022/07/19/DevOps%EA%B0%9C%EB%85%90.html"/>
+   <updated>2022-07-19T00:00:00+00:00</updated>
+   <id>https://gwemin.github.io/2022/07/19/DevOps개념</id>
+   <content type="html">&lt;h1 id=&quot;devops-기본-개념&quot;&gt;DevOps 기본 개념&lt;/h1&gt;
+
+&lt;h3 id=&quot;devops-&quot;&gt;DevOps ?&lt;/h3&gt;
+
+&lt;p&gt;개발(Dev) 와 운영 (Ops)의 합성어.
+개발과 운영의 경계를 허물고 통합하고자 하는 문화 혹은 철학&lt;/p&gt;
+
+&lt;h3 id=&quot;devops-역사--태동&quot;&gt;DevOps 역사 : 태동&lt;/h3&gt;
+
+&lt;p&gt;2009년 O’Reilly Velocity Conference
+&amp;lt;하루에 10회 이상 배포하기 : Flickr에서 Dev와 Ops의 협업
+&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/public/media/SDLC.png&quot; alt=&quot;SDLC.PNG&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;소프트웨어 개발은 위와 같은 라이플사이클, 생애주기를 가지고 있습니다.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/public/media/fullcycle.png&quot; alt=&quot;fullcycle.PNG&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;조직이 커지면 각 단계 별 전문가로 구성된 기능 조직을 운영할 수 있다.
+하지만 그만큼 의사소통이 많아지기에 커뮤니케이션 문제가 생기고, 병목구간이 생기기 쉬워진다.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/public/media/devops관여.png&quot; alt=&quot;devops관여.PNG&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;하지만 개발자가 소프트웨어의 생애주기 중 여러 단계에 참여 할 수 있다면 어떻게 될까?&lt;/strong&gt;
+데브옵스가 조직에 정착되고 나면 개발자는 작성한 코드에 대해 스스로 테스트하고, 배포하고, 운영에 참여 할 수 있게된다.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;full-cycle-developer&quot;&gt;Full-cycle Developer&lt;/h2&gt;
+
+&lt;p&gt;소트웨어 개발 생애주기의 전체에 직접 참여하는 개발자
+( 넷플릭스에서 제시한 모델 )&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;데브옵스는-패러다임이다&quot;&gt;데브옵스는 패러다임이다.&lt;/h2&gt;
+&lt;p&gt;데브옵스는 방법을 제시하지 않는다.
+데브옵스는 문화이다.&lt;/p&gt;
+
+&lt;p&gt;개발과 운영의 벽을 허물어 더 빨리 자주 배포하자!!!&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;데스옵스-실천방법--aws&quot;&gt;데스옵스 실천방법 : AWS&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;지속적 통합 ( Continuous Integration )&lt;/li&gt;
+  &lt;li&gt;지속적 배포 ( Continuous Delivery )&lt;/li&gt;
+  &lt;li&gt;마이크로서비스 ( Micro-Services )&lt;/li&gt;
+  &lt;li&gt;IaC ( Infrastructure as Code )&lt;/li&gt;
+  &lt;li&gt;모니터링과 로깅 ( Monitoring &amp;amp; Logging )&lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;소통 및 협업 ( Communication &amp;amp; Collaboration )&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;데브옵스는 개발과 운영을 통합하여 제품 출시 및 조직의 효율성을 끌어올리기 위한 문화이다.&lt;/li&gt;
+  &lt;li&gt;데스옵스는 2009년에 시작된 기업의 소프트웨어 개발 방법을 개선하기 위한 움직임 이다.&lt;/li&gt;
+  &lt;li&gt;데브옵스는 조직, 고객, 회사, 모두 이점을 가져다 줄 수 있다.&lt;/li&gt;
+  &lt;li&gt;데브옵스는 방법을 제시하지 않지만, 여러 실천 방법들을 활용할 수 있다.&lt;/li&gt;
+&lt;/ul&gt;
+</content>
+ </entry>
+ 
+ <entry>
+   <title>Iac_형상 관리</title>
+   <link href="https://gwemin.github.io/2022/07/15/Iac_%ED%98%95%EC%83%81-%EA%B4%80%EB%A6%AC.html"/>
+   <updated>2022-07-15T00:00:00+00:00</updated>
+   <id>https://gwemin.github.io/2022/07/15/Iac_형상 관리</id>
+   <content type="html">&lt;h1 id=&quot;iac_형상-관리&quot;&gt;Iac_형상 관리&lt;/h1&gt;
+
+&lt;h2 id=&quot;요약&quot;&gt;요약&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;IaC는 네트워크, 서버, 데이터베이스, 저장소 등과 같은 인프라 저원을 코드로 관리하는 것으로, Terraform이 대표적인 Iac 도구입니다.&lt;/li&gt;
+  &lt;li&gt;형상 관리 도구는 서버 상에 소프트웨어 설치 및 설정을 코드로 관리하는 것으로, Ansible이 대표적입니다.&lt;/li&gt;
+  &lt;li&gt;이미지 빌더는 AWS EC2, VirtualBox, Docker 등과 같은 특정 환경에서 재사용 가능한 이미지를 코드로 정의하는 것으로, Packer가 대표적입니다.&lt;/li&gt;
+  &lt;li&gt;Iac, 형상관리 도구, 이미지 빌더 모두 기존 인프라 문제들을 코드로 관리하여 해결하기 위한 시도로 데브옵스를 실천하기 위한 Best Prictice 입니다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;iac-infrastructure-as-code-&quot;&gt;Iac (Infrastructure as Code )&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;네트워크, 로드밸런서, 저장소, 서버 등의 인프라 자원을 수동 설정이 아닌 &lt;strong&gt;코드&lt;/strong&gt;를 이용하여 &lt;strong&gt;브로비저닝&lt;/strong&gt;하고 관리하는 것&lt;/li&gt;
+  &lt;li&gt;대표적인 Iac 도구로 Terraform, CloudFormation, Pulumi, Azure ARM Template 등이 있음&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://velog.velcdn.com/images%2Fhyun6ik%2Fpost%2F2113ea0a-2995-4da3-8222-6a54783b9450%2Fimage.png&quot; alt=&quot;https://velog.velcdn.com/images%2Fhyun6ik%2Fpost%2F2113ea0a-2995-4da3-8222-6a54783b9450%2Fimage.png&quot; /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;형상-관리-configuration-management&quot;&gt;형상 관리 (Configuration Management)&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;서버 운영체제 상에 필요한 소프트웨어를 설치하고 원하는 설정으로 관리하는 것&lt;/li&gt;
+  &lt;li&gt;Configuration as Code 라고도 불림&lt;/li&gt;
+  &lt;li&gt;대표적인 형상 관리 도구로 Ansible, Puppet, Chef, Slat Stack 등이 있음&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;이미지-빌드-image-build&quot;&gt;이미지 빌드 (Image build)&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;AWS EC2, VMware, VirtualBox, Docker 등 여러 플랫폼에서 재사용 가능한 머신 이미지를 빌드하는 것&lt;/li&gt;
+  &lt;li&gt;대표적인 이미지 빌더로 패커(Packer), AWS EC2 Image Builder(AMI) 등이 있음&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;코드로-관리한다는-것--as-code-&quot;&gt;코드로 관리한다는 것( …. as code )&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;사람이 수동으로 처리하는 것을 코드로 작성하여 관리
+→ &lt;strong&gt;휴먼 에러 방지&lt;/strong&gt; / &lt;strong&gt;재사용성&lt;/strong&gt; / &lt;strong&gt;일관성&lt;/strong&gt;&lt;/li&gt;
+  &lt;li&gt;소프트웨어 개발처럼 Git과 같은 버전 관리 시스템(VCS) 활용 가능
+→ &lt;strong&gt;코드 리뷰&lt;/strong&gt; / &lt;strong&gt;변경내용 추적&lt;/strong&gt; / &lt;strong&gt;버전 관리&lt;/strong&gt; / &lt;strong&gt;협업&lt;/strong&gt;&lt;/li&gt;
+  &lt;li&gt;선언형 설정 (Declarative Configuration) (Terraform) 과 절차혈  설정 (Imperative Configuration)(Ansible, Shell Script )의 차이&lt;/li&gt;
+&lt;/ul&gt;
+</content>
+ </entry>
+ 
+
+</feed>
+
+
+      </div>
+    </main><footer class="site-footer">
+  <div class="wrapper">
+    <div class="credits"><a href="https://github.com/bitbrain/jekyll-dash">dash</a> theme for Jekyll by <a href="https://github.com/bitbrain">bitbrain</a> made with <i class="fas fa-heart"></i><div class="toggleWrapper">
+    <input type="checkbox" class="dn" id="theme-toggle" onclick="modeSwitcher()" checked />
+    <label for="theme-toggle" class="toggle">
+    <span class="toggle__handler">
+      <span class="crater crater--1"></span>
+      <span class="crater crater--2"></span>
+      <span class="crater crater--3"></span>
+    </span>
+        <span class="star star--1"></span>
+        <span class="star star--2"></span>
+        <span class="star star--3"></span>
+        <span class="star star--4"></span>
+        <span class="star star--5"></span>
+        <span class="star star--6"></span>
+    </label>
+</div>
+<script type="text/javascript">
+const theme = localStorage.getItem('theme');
+
+if (theme === "light") {
+    document.documentElement.setAttribute('data-theme', 'light');
+} else {
+    document.documentElement.setAttribute('data-theme', 'dark');
+}
+const userPrefers = getComputedStyle(document.documentElement).getPropertyValue('content');
+
+function activateDarkTheme() {
+    document.getElementById('theme-toggle').checked = true;
+    document.documentElement.setAttribute('data-theme', 'dark');
+    document.documentElement.classList.add('theme--dark');
+    document.documentElement.classList.remove('theme--light');
+	document.getElementById("theme-toggle").className = 'light';
+	window.localStorage.setItem('theme', 'dark');
+}
+
+function activateLightTheme() {
+    document.getElementById('theme-toggle').checked = false;
+    document.documentElement.setAttribute('data-theme', 'light');
+    document.documentElement.classList.add('theme--light');
+    document.documentElement.classList.remove('theme--dark');
+	document.getElementById("theme-toggle").className = 'dark';
+	window.localStorage.setItem('theme', 'light');
+}
+
+if (theme === "dark") {
+    activateDarkTheme();
+} else if (theme === "light") {
+    activateLightTheme();
+} else if  (userPrefers === "light") {
+    activateDarkTheme();
+} else {
+    activateDarkTheme();
+}
+
+function modeSwitcher() {
+	let currentMode = document.documentElement.getAttribute('data-theme');
+	if (currentMode === "dark") {
+	    activateLightTheme();
+	} else {
+	    activateDarkTheme();
+	}
+}
+</script></div>
+  </div>
+</footer>
+
+
+<script>
+      window.FontAwesomeConfig = {
+        searchPseudoElements: true
+      }
+    </script>
+  </body>
+
+</html>

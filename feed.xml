@@ -1,0 +1,455 @@
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.2">Jekyll</generator><link href="https://gwemin.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://gwemin.github.io/" rel="alternate" type="text/html" /><updated>2023-07-14T01:46:06+00:00</updated><id>https://gwemin.github.io/feed.xml</id><title type="html">gwemin</title><subtitle>나 자신이 만족하는 개발자가 되기위해서 도전하는 청년입니당~~
+</subtitle><author><name>gwemin</name></author><entry><title type="html">Validation, Data Binding</title><link href="https://gwemin.github.io/2023/02/13/Validation,-Data-binding.html" rel="alternate" type="text/html" title="Validation, Data Binding" /><published>2023-02-13T00:00:00+00:00</published><updated>2023-02-13T00:00:00+00:00</updated><id>https://gwemin.github.io/2023/02/13/Validation,%20Data%20binding</id><content type="html" xml:base="https://gwemin.github.io/2023/02/13/Validation,-Data-binding.html"><![CDATA[<h1 id="validation-data-binding">Validation, Data binding</h1>
+
+<p>날짜: 2022-08-13
+태그: Spring</p>
+
+<h2 id="validation-in-spring">Validation in spring</h2>
+
+<h3 id="validation-이란">Validation 이란?</h3>
+
+<p>한국말로는 유효성검증</p>
+
+<p>주로 사용자 또는 서버의 요청(http request) 내용에서 잘못된 내용이 있는지 확인하는 단계를 뜻함.</p>
+
+<p><br /></p>
+
+<h3 id="validation의-종류">Validation의 종류</h3>
+
+<p>학문적으로 여러 세부적인 단계들이 있기도 하지만 실제로 개발자가 주로 챙겨야하는 검증은 크게 두 종류로 나뉜다.</p>
+
+<p><br /></p>
+
+<h3 id="데이터-검증">데이터 검증</h3>
+
+<ul>
+  <li>필수 데이터의 존재 유무</li>
+  <li>문자열의 길이나 숫자형 데이터의 경우 값의 범위</li>
+  <li>email, 신용카드 번호 등 특정 형식에 맞춘 데이터</li>
+</ul>
+
+<p><br /></p>
+
+<h3 id="비지니스-검증">비지니스 검증</h3>
+
+<ul>
+  <li>서비스에 정책에 따라 데이터를 확인하여 검증</li>
+  <li>예) 배달앱인 경우 배달 요청을 할 때 해당 주문건이 결제 완료 상태인지 확인 등</li>
+  <li>경우에 따라 외부 API를 호출하거나 DB의 데이터까지 조회하여 검증하는 경우도 존재</li>
+</ul>
+
+<p><br /></p>
+
+<hr />
+
+<h3 id="spring의-validation">Spring의 Validation</h3>
+
+<p>스프링은 웹 레이어에 종속적이지 않은 방법으로 밸리데이션을 하려고 의도하고 있으며 주로 아래 두가지 방법을 활용하여 밸리데이션 진행(둘다 데이터 검증에 가까움)</p>
+
+<h3 id="java-bean-validation">Java Bean Validation</h3>
+
+<p>JavaBean 기반으로 간편하게 개별 데이터를 검증</p>
+
+<p>요즘에 가장 많이 활용되는 방법 중 하나이며, 아래 코드처럼 JavaBean 내에 어노테이션으로 검증방법을 명시함</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">MemberCreationRequest</span> <span class="o">{</span>
+		<span class="nd">@NotBlank</span><span class="o">(</span><span class="n">message</span><span class="o">=</span><span class="s">"이름을 정해주세요"</span><span class="o">)</span>
+		<span class="nd">@Size</span><span class="o">(</span><span class="n">max</span><span class="o">=</span><span class="mi">64</span><span class="o">,</span> <span class="n">message</span><span class="o">=</span><span class="s">"이름의 최대 길이는 64자 입니다."</span><span class="o">)</span>
+		<span class="kd">private</span> <span class="nc">String</span> <span class="n">name</span><span class="o">;</span>
+		<span class="nd">@Min</span><span class="o">(</span><span class="mi">0</span><span class="o">,</span> <span class="s">"나이는 0보다 커야 합니다."</span><span class="o">)</span>
+		<span class="kd">private</span> <span class="kt">int</span> <span class="n">age</span><span class="o">;</span>
+		<span class="nd">@Email</span><span class="o">(</span><span class="s">"이메일 형식이 잘못되었습니다."</span><span class="o">)</span>
+		<span class="kd">private</span> <span class="kt">int</span> <span class="n">email</span><span class="o">;</span>
+		
+		<span class="c1">// the usual getters and setters....</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>위처럼 요청 dto에 어노테이션으로 명시 후 아래처럼 @Valid 어노테이션을 해당 @RequestBody에 달게 되면, Java Bean Validation을 수행한 후 문제가 없을 때만 메서드 내부로 진입이 된다.</p>
+
+<p><br /></p>
+
+<ul>
+  <li>검증 중 실패가 발생하며? : MethodArgumentNotValidException이 발생</li>
+</ul>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@PostMapping</span><span class="o">(</span><span class="n">value</span> <span class="o">=</span> <span class="s">"/member"</span><span class="o">)</span>
+<span class="kd">public</span> <span class="nc">MemberCreationResponse</span> <span class="nf">createMember</span><span class="o">(</span>
+	<span class="nd">@Valid</span> <span class="nd">@RequestBody</span> <span class="kd">final</span> <span class="nc">MemberCreationRequest</span> <span class="n">memberCreationRequest</span><span class="o">)</span> <span class="o">{</span>
+		<span class="c1">// member creation logics here....</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p><br /></p>
+
+<hr />
+
+<h3 id="spring-validator-인터페이스-구현을-통한-validation">Spring validator 인터페이스 구현을 통한 validation</h3>
+
+<p>위처럼 Person이라는 javaBean 객체가 있을때, 아래는 해당 인스턴스에서만 활용되는 validator 이다.</p>
+
+<p>인터페이스에 있는 두개의 메서드는 아래와 같은 역할을 한다.</p>
+
+<ul>
+  <li>supports : 이 validator가 동작할 조건을 정의, 주로 clas의 타입을 비교</li>
+  <li>validate : 원하는 검증을 진행한다.</li>
+</ul>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">PersonValidator</span> <span class="kd">implements</span> <span class="nc">Validator</span> <span class="o">{</span>
+		<span class="cm">/** 
+			This Validator validates only Person instances
+
+		*/</span>
+		<span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">supports</span><span class="o">(</span><span class="nc">Class</span> <span class="n">clazz</span><span class="o">)</span> <span class="o">{</span>
+			<span class="k">return</span> <span class="nc">Person</span><span class="o">.</span><span class="na">class</span><span class="o">.</span><span class="na">equals</span><span class="o">(</span><span class="n">clazz</span><span class="o">);</span>
+		<span class="o">}</span>
+		<span class="kd">public</span> <span class="kt">void</span> <span class="nf">validate</span><span class="o">(</span><span class="nc">Object</span> <span class="n">obj</span><span class="o">,</span> <span class="nc">Errors</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+			<span class="nc">ValidationUtils</span><span class="o">.</span><span class="na">rejectIfEmpty</span><span class="o">(</span><span class="n">e</span><span class="o">,</span> <span class="s">"name"</span><span class="o">,</span> <span class="s">"name.empty"</span><span class="o">);</span>
+			<span class="nc">Person</span> <span class="n">p</span> <span class="o">=</span> <span class="o">(</span><span class="nc">Person</span><span class="o">)</span> <span class="n">obj</span><span class="o">;</span>
+			<span class="k">if</span> <span class="o">(</span><span class="n">p</span><span class="o">.</span><span class="na">getAge</span><span class="o">()</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="o">)</span> <span class="o">{</span>
+				<span class="n">e</span><span class="o">.</span><span class="na">rejectValue</span><span class="o">(</span><span class="s">"age"</span><span class="o">,</span> <span class="s">"negativevalue"</span><span class="o">);</span>
+			<span class="o">}</span> <span class="k">else</span> <span class="k">if</span><span class="o">(</span><span class="n">p</span><span class="o">.</span><span class="na">getAge</span><span class="o">()</span> <span class="o">&gt;</span> <span class="mi">110</span><span class="o">)</span> <span class="o">{</span>
+					<span class="n">e</span><span class="o">.</span><span class="na">rejectValue</span><span class="o">(</span><span class="s">"age"</span><span class="o">,</span><span class="s">"too.darn.old"</span><span class="o">);</span>
+			<span class="o">}</span>
+		<span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="validation-수행-시-주의사항-및-패턴">Validation 수행 시 주의사항 및 패턴</h2>
+
+<h3 id="주의사항">※주의사항※</h3>
+
+<ul>
+  <li>validation이 너무 여러 군데 흩어져있으며 테스트 및 유지보수성이 떨어짐
+    <ul>
+      <li>중복된 검증 : 정책 변경 시에 모든 중복 코드를 수정해야 함</li>
+      <li>다른 검증 : 여러 군데서 다른 정책을 따르는 검증이 수행될 수 있음</li>
+    </ul>
+  </li>
+  <li>가능한 validaton은 로직 초기에 수행 후 실패 시에는 exception을 던지는 편이 처리가 편리함</li>
+</ul>
+
+<p><br /></p>
+
+<h3 id="실무-활용-패턴">실무 활용 패턴</h3>
+
+<ul>
+  <li>필자의 주 사용 패턴
+    <ul>
+      <li>요청 dto에서 Java Bean Validation으로 단순 데이터(유무, 범위, 형식 등)를 1차 검증</li>
+      <li>로직 초기에 2차로 비즈니스 검증 수행 후 실패 시에는 Custom Exception(ErrorCode,, ErrorMessage를 입력) 해서 예외를 던지도록 하고 예외처리하여 응답 생성</li>
+    </ul>
+  </li>
+  <li>Spring validator의 (제가 생각하는) 장단점
+    <ul>
+      <li>장점 : Java Bean Validation에 비해 조금 더 복잡한 검증이 가능</li>
+      <li>단점
+        <ul>
+          <li>Validation을 수행하는 코드를 찾기가 (상대적으로) 어렵다.</li>
+          <li>완전히 데이터만 검증하는 것이 아니기 때문에 일부 비즈니스적인 검증이 들어가는 경우가 잇다.
+            <ul>
+              <li>→ 이 경우 비즈니스 검증 로직이 여러 군데로 흩어지기 때문에 잘못된 검증(중복 검증, 다른 정책을 따르는 검증)을 수행할 가능성이 높아짐</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<p><strong>하지만 이 내용들을은 필자의 의견에 가까우며, 팀 내에서 주로 사용하는 검증 패턴을 따르는것이 좋다.</strong></p>
+
+<hr />
+
+<p><br /></p>
+
+<h2 id="data-binding">Data Binding</h2>
+
+<p>사용자나 외부 서버의 요청 데이터를 특정 도메인 객체에 저장해서 우리 프로그램에 Request에 담아주는 것을 뜻한다.</p>
+
+<h3 id="converters-t-interface">Converter&lt;S, T&gt; Interface</h3>
+
+<p>S(Source)라는 타입을 받아서 T(Target)이라는 타입으로 변환해주는 interface</p>
+
+<p>인터페이스의 모양은 아래와 같다.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="nn">org.springframework.core.convert.converter</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">interface</span> <span class="nc">Converter</span><span class="o">&lt;</span><span class="no">S</span><span class="o">,</span> <span class="no">T</span><span class="o">&gt;</span> <span class="o">{</span>
+	<span class="no">T</span> <span class="nf">convert</span><span class="o">(</span><span class="no">S</span> <span class="n">source</span><span class="o">);</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<ul>
+  <li>제가 활용해봤던 경험 : 파라미터에 json 형식 문자열이 담겨오는 경우 해당 문자열을 곧바로 특정 dto에 담고 싶을 때 사용</li>
+</ul>
+
+<p><br /></p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// 요청</span>
+<span class="no">GET</span> <span class="o">/</span><span class="n">user</span><span class="o">-</span><span class="n">info</span>
+<span class="n">x</span><span class="o">-</span><span class="n">auth</span><span class="o">-</span><span class="n">user</span> <span class="o">:</span> <span class="o">{</span><span class="s">"id"</span><span class="o">:</span><span class="mi">123</span><span class="o">,</span> <span class="s">"name"</span><span class="o">:</span><span class="s">"Paul"</span><span class="o">}</span>
+
+<span class="c1">// 유저 객체</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">XAuthUser</span> <span class="o">{</span>
+		<span class="kd">private</span> <span class="kt">int</span> <span class="n">id</span><span class="o">;</span>
+		<span class="kd">private</span> <span class="nc">String</span> <span class="n">name</span><span class="o">;</span>
+		
+		<span class="c1">// the usual getters and setters</span>
+<span class="o">}</span>
+
+<span class="nd">@GetMapping</span><span class="o">(</span><span class="s">"/user-info"</span><span class="o">)</span>
+<span class="kd">public</span> <span class="nc">UserInfoResponse</span> <span class="nf">getUserInfo</span><span class="o">(</span>
+	<span class="nd">@RequestHeader</span><span class="o">(</span><span class="s">"x-auth-user"</span><span class="o">)</span> <span class="nc">XAuthUser</span> <span class="n">xAuthUser</span><span class="o">){</span>
+		<span class="c1">// get User Info logic here....</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>위 처럼 헤더에 담긴 json 형식 문자열을 XAuthUser에 바로담고 싶은 경우 아래와 같이 Converter를 Bean으로 등록하면 된다.</p>
+
+<p><br /></p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Component</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">XAuthUserConverter</span> <span class="kd">implements</span> <span class="nc">Converter</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">,</span> <span class="nc">XAuthUser</span><span class="o">&gt;</span> <span class="o">{</span>
+	<span class="nd">@Override</span>
+	<span class="kd">public</span> <span class="nc">XAuthUser</span> <span class="nf">convert</span><span class="o">(</span><span class="nc">String</span> <span class="n">source</span><span class="o">)</span> <span class="o">{</span>
+		<span class="k">return</span> <span class="n">objectMapper</span><span class="o">.</span><span class="na">readValue</span><span class="o">(</span><span class="n">source</span><span class="o">,</span> <span class="nc">XAuthUser</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
+	<span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>이와 비슷하게 PathParameter나 기타 특수한 경우의 데이터를 특정 객쳉 담고 싶은 경우</p>
+
+<ul>
+  <li>Converter를 만들어서 Spring에 Bean으로 등록</li>
+  <li>스프링 내에 ConversionService라는 내장된 서비스에서 Converter 구현체 Bean들을 Conveter 리스트에 등록</li>
+  <li>외부데이터가 들어오고, Source Class Type → Target Class Type이 Converter에 등록된 형식과 일치하면 해당 Converter가 동작하는 원리</li>
+</ul>
+
+<p><br /></p>
+
+<hr />
+
+<h3 id="formatter">Formatter</h3>
+
+<p>특정 객체 String간의 변환을 담당</p>
+
+<p>아래 샘플 코드는 Date ↔️ String 간의 변환을 수행하는 Formatter이다.</p>
+
+<ul>
+  <li>print : API 요청에 대한 응답을 줄때, Date 형식으로 된 데이터를 특정 locale에 맞춘 String으로 변환</li>
+  <li>parse : API 요청을 받아올 때, String으로 된 “2021-01-01 13:15:00” 같은 날짜 형식의 데이터를 Date로 변환 하도록 함</li>
+</ul>
+
+<p><br /></p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="nn">org.springframework.format.datetime</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">final</span> <span class="kd">class</span> <span class="nc">DateFormatter</span> <span class="kd">implements</span> <span class="nc">Formatter</span><span class="o">&lt;</span><span class="nc">Date</span><span class="o">&gt;</span> <span class="o">{</span>
+		<span class="kd">public</span> <span class="nc">String</span> <span class="nf">print</span><span class="o">(</span><span class="nc">Date</span> <span class="n">date</span><span class="o">,</span> <span class="nc">Locale</span> <span class="n">locale</span><span class="o">)</span> <span class="o">{</span>
+			<span class="k">return</span> <span class="nf">getDateFormat</span><span class="o">(</span><span class="n">locale</span><span class="o">).</span><span class="na">format</span><span class="o">(</span><span class="n">date</span><span class="o">);</span>
+		<span class="o">}</span>
+		<span class="kd">public</span> <span class="nc">Date</span> <span class="nf">parse</span><span class="o">(</span><span class="nc">String</span> <span class="n">formatted</span><span class="o">,</span> <span class="nc">Locale</span> <span class="n">locale</span><span class="o">)</span> <span class="kd">throws</span> <span class="nc">ParseException</span> <span class="o">{</span>
+			<span class="k">return</span> <span class="nf">getDateFormat</span><span class="o">(</span><span class="n">locale</span><span class="o">).</span><span class="na">parse</span><span class="o">(</span><span class="n">formatted</span><span class="o">);</span>
+		<span class="o">}</span>
+		<span class="c1">// getDateFormat 등 일부 구현은 핵심에 집중하기 위해 생략....</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>Formatter도 Converter와 마찬가지로 Spring Bean으로 등록하면 자동으로 ConversionService에 등록시켜 주기 때문에 필요 (요청/응답 시 해당 데이터 타입이 있는 경우)에 따라 자동으로 동작하게 된다.</p>]]></content><author><name>gwemin</name></author><category term="Spring" /><summary type="html"><![CDATA[Validation은 필수!!!]]></summary></entry><entry><title type="html">2022 OSAM 해커톤</title><link href="https://gwemin.github.io/2022/09/17/OSAM-%ED%95%B4%EC%BB%A4%ED%86%A4.html" rel="alternate" type="text/html" title="2022 OSAM 해커톤" /><published>2022-09-17T00:00:00+00:00</published><updated>2022-09-17T00:00:00+00:00</updated><id>https://gwemin.github.io/2022/09/17/OSAM%20%ED%95%B4%EC%BB%A4%ED%86%A4</id><content type="html" xml:base="https://gwemin.github.io/2022/09/17/OSAM-%ED%95%B4%EC%BB%A4%ED%86%A4.html"><![CDATA[<h1 id="osam-해커톤-2022-준비">OSAM 해커톤 2022 준비~</h1>
+
+<p><br /><br /></p>
+
+<h2 id="2022년-osam-해커톤-참가">2022년 OSAM 해커톤 참가</h2>
+
+<p>2022년 05월 16일 입소하여 현재 일병 2호봉 입니다.</p>
+
+<p>군 복무하면서 자기계발에 초점을 맞추고 지내던중</p>
+
+<p>“<strong>군대 소프트웨어</strong>” 키워드로 구글링을 해보다가  <strong>OSAM</strong> 을 알게 되었고</p>
+
+<p>신청하게 되었습니다.</p>
+
+<hr />
+
+<p><br /></p>
+
+<h2 id="참가자-선발-기준">참가자 선발 기준</h2>
+
+<p><img src="/public/media/OSAM.png" alt="OSAM.PNG" /></p>
+
+<hr />
+
+<p><br /></p>
+
+<h2 id="이론평가--코딩테스트">이론평가 &amp; 코딩테스트</h2>
+
+<h3 id="이론평가">이론평가</h3>
+
+<p><strong>일단 한가지 말씀드리자면 전혀 걱정하실 필요 없습니다.</strong></p>
+
+<p>왜냐하면 <strong>이론평가</strong>는 굉장히 쉽습니다. ( 필자는 2문제 틀려서 95점 맞았습니다 )</p>
+
+<p><strong>전공자</strong>라면 충분히 풀고 <strong>비전공자</strong> 라도 공부를 관련 분야 공부하였다면 충분히 풀수 있습니다.</p>
+
+<p><br /></p>
+
+<h3 id="코딩테스트">코딩테스트</h3>
+
+<p><strong>코딩테스트</strong> 는 진짜 깜짝 놀랐습니다.</p>
+
+<p>제가 알고리즘을 공부를 한적이 없어서 3주전 부터 “<strong>이것이 취업을 위한 코딩 테스트다</strong>” 
+도서를 구매하여 이론을 공부 하는데 문제를 푸는데 어려움이 있었습니다.</p>
+
+<p>그런데 타블로그에서 쉽다고 하여 <strong>코딩테스트 마감전날</strong> 공부안하고 막무가내로 코테를 치렀습니다.</p>
+
+<p>그런데 문제의 <strong>티어</strong>는 대략 <strong>골드 상위권</strong> 정도 되었습니다.</p>
+
+<p>구현 문제를 풀다가 보니까 1시간 30분이 지나서 실행을 눌러보니까 에러가 떠서 “포기해야겠다…”
+라고 생각하여 <strong>0점</strong> 으로 제출을 하였습니다.</p>
+
+<p><br /></p>
+
+<h2 id="개발계획서">개발계획서</h2>
+
+<p>그래도 개발계획서는 정성껏 작성하여 제출하였습니다. 주제는 <strong>또래 상볌을 위한 반응형 웹</strong> 이었습니다.</p>
+
+<p>용사가 또래 상담병에게 상담받고 싶을 때 개인 정비시간 때 상담을 진행하는데 스마트폰, PC를 이용하여 이용할 수 있게 기획하게 되었습니다.</p>
+
+<p>사용할 라이브러리, DB, 클라우드, 언어(라이브러리,템플릿) 들을 작성하여 제출하였습니다.</p>
+
+<p><br /><br /></p>
+
+<h2 id="결과">결과</h2>
+
+<p>기대안하고 9월 7일 수요일에 결과를 확인해보니까 명단에 제 이름이 있는걸 보고 놀랐습니다.</p>
+
+<p>같이 신청한 <strong>동기1명</strong> 과 <strong>선임1명</strong> 도 붙어서 참가자들이 별로 없었나 보구나 생각하였습니다.</p>
+
+<p>그런데 실력차이가 극과극 일 것 같아서 걱정이 됩니다.</p>
+
+<p>저는 프로젝트를 협업하여 해본적이 없어서 걱정입니다. 그래도 최선을 다해 할 생각입니다.</p>
+
+<p>그러니까 여러분들도 <strong>군복무</strong> 하면서 <strong>자기계발</strong>을 할 수 있는 기회를 놓치지 않았으며 좋겠습니다.</p>
+
+<p><br /></p>
+
+<hr />
+
+<h2 id="현재-진행사항">현재 진행사항</h2>
+
+<p><strong>9월 16일</strong>부터 휴가를 신청하였기에 <strong>9월 22일</strong> 부터 <strong>10월 27일</strong> 까지</p>
+
+<p>본격적으로 시작하기에 휴가를 가서 어느정도 준비를 할 수 있어서 다행이었습니다.</p>
+
+<p><strong>웹 기반 통합개발환경</strong>, <strong>가상머신 환경</strong>을 제공해주기에 사지방에 대한 걱정은 사라졌습니다.</p>
+
+<h2 id="군장병-여러분들도-기회를-놓치지마세요--생각보다-쉽습니다">군장병 여러분들도 기회를 놓치지마세요!! ( 생각보다 쉽습니다.)</h2>]]></content><author><name>gwemin</name></author><category term="해커톤" /><summary type="html"><![CDATA[시도하는 자는 앞으로 나아간다...]]></summary></entry><entry><title type="html">DevOps 개념</title><link href="https://gwemin.github.io/2022/07/19/DevOps%EA%B0%9C%EB%85%90.html" rel="alternate" type="text/html" title="DevOps 개념" /><published>2022-07-19T00:00:00+00:00</published><updated>2022-07-19T00:00:00+00:00</updated><id>https://gwemin.github.io/2022/07/19/DevOps%EA%B0%9C%EB%85%90</id><content type="html" xml:base="https://gwemin.github.io/2022/07/19/DevOps%EA%B0%9C%EB%85%90.html"><![CDATA[<h1 id="devops-기본-개념">DevOps 기본 개념</h1>
+
+<h3 id="devops-">DevOps ?</h3>
+
+<p>개발(Dev) 와 운영 (Ops)의 합성어.
+개발과 운영의 경계를 허물고 통합하고자 하는 문화 혹은 철학</p>
+
+<h3 id="devops-역사--태동">DevOps 역사 : 태동</h3>
+
+<p>2009년 O’Reilly Velocity Conference
+&lt;하루에 10회 이상 배포하기 : Flickr에서 Dev와 Ops의 협업
+<br /><br /></p>
+
+<p><img src="/public/media/SDLC.png" alt="SDLC.PNG" /></p>
+
+<p>소프트웨어 개발은 위와 같은 라이플사이클, 생애주기를 가지고 있습니다.</p>
+
+<p><br /><br /></p>
+
+<p><img src="/public/media/fullcycle.png" alt="fullcycle.PNG" /></p>
+
+<p>조직이 커지면 각 단계 별 전문가로 구성된 기능 조직을 운영할 수 있다.
+하지만 그만큼 의사소통이 많아지기에 커뮤니케이션 문제가 생기고, 병목구간이 생기기 쉬워진다.</p>
+
+<p><br /><br /></p>
+
+<p><img src="/public/media/devops관여.png" alt="devops관여.PNG" /></p>
+
+<p><strong>하지만 개발자가 소프트웨어의 생애주기 중 여러 단계에 참여 할 수 있다면 어떻게 될까?</strong>
+데브옵스가 조직에 정착되고 나면 개발자는 작성한 코드에 대해 스스로 테스트하고, 배포하고, 운영에 참여 할 수 있게된다.</p>
+
+<p><br /><br /></p>
+
+<h2 id="full-cycle-developer">Full-cycle Developer</h2>
+
+<p>소트웨어 개발 생애주기의 전체에 직접 참여하는 개발자
+( 넷플릭스에서 제시한 모델 )</p>
+
+<p><br /><br /></p>
+
+<h2 id="데브옵스는-패러다임이다">데브옵스는 패러다임이다.</h2>
+<p>데브옵스는 방법을 제시하지 않는다.
+데브옵스는 문화이다.</p>
+
+<p>개발과 운영의 벽을 허물어 더 빨리 자주 배포하자!!!</p>
+
+<p><br /><br /></p>
+
+<h3 id="데스옵스-실천방법--aws">데스옵스 실천방법 : AWS</h3>
+
+<ul>
+  <li>지속적 통합 ( Continuous Integration )</li>
+  <li>지속적 배포 ( Continuous Delivery )</li>
+  <li>마이크로서비스 ( Micro-Services )</li>
+  <li>IaC ( Infrastructure as Code )</li>
+  <li>모니터링과 로깅 ( Monitoring &amp; Logging )</li>
+  <li>
+    <p>소통 및 협업 ( Communication &amp; Collaboration )</p>
+  </li>
+  <li>데브옵스는 개발과 운영을 통합하여 제품 출시 및 조직의 효율성을 끌어올리기 위한 문화이다.</li>
+  <li>데스옵스는 2009년에 시작된 기업의 소프트웨어 개발 방법을 개선하기 위한 움직임 이다.</li>
+  <li>데브옵스는 조직, 고객, 회사, 모두 이점을 가져다 줄 수 있다.</li>
+  <li>데브옵스는 방법을 제시하지 않지만, 여러 실천 방법들을 활용할 수 있다.</li>
+</ul>]]></content><author><name>gwemin</name></author><category term="DevOps" /><summary type="html"><![CDATA[DevOps는 만능이다~~~]]></summary></entry><entry><title type="html">Iac_형상 관리</title><link href="https://gwemin.github.io/2022/07/15/Iac_%ED%98%95%EC%83%81-%EA%B4%80%EB%A6%AC.html" rel="alternate" type="text/html" title="Iac_형상 관리" /><published>2022-07-15T00:00:00+00:00</published><updated>2022-07-15T00:00:00+00:00</updated><id>https://gwemin.github.io/2022/07/15/Iac_%ED%98%95%EC%83%81%20%EA%B4%80%EB%A6%AC</id><content type="html" xml:base="https://gwemin.github.io/2022/07/15/Iac_%ED%98%95%EC%83%81-%EA%B4%80%EB%A6%AC.html"><![CDATA[<h1 id="iac_형상-관리">Iac_형상 관리</h1>
+
+<h2 id="요약">요약</h2>
+
+<ul>
+  <li>IaC는 네트워크, 서버, 데이터베이스, 저장소 등과 같은 인프라 저원을 코드로 관리하는 것으로, Terraform이 대표적인 Iac 도구입니다.</li>
+  <li>형상 관리 도구는 서버 상에 소프트웨어 설치 및 설정을 코드로 관리하는 것으로, Ansible이 대표적입니다.</li>
+  <li>이미지 빌더는 AWS EC2, VirtualBox, Docker 등과 같은 특정 환경에서 재사용 가능한 이미지를 코드로 정의하는 것으로, Packer가 대표적입니다.</li>
+  <li>Iac, 형상관리 도구, 이미지 빌더 모두 기존 인프라 문제들을 코드로 관리하여 해결하기 위한 시도로 데브옵스를 실천하기 위한 Best Prictice 입니다.</li>
+</ul>
+
+<h3 id="iac-infrastructure-as-code-">Iac (Infrastructure as Code )</h3>
+
+<ul>
+  <li>네트워크, 로드밸런서, 저장소, 서버 등의 인프라 자원을 수동 설정이 아닌 <strong>코드</strong>를 이용하여 <strong>브로비저닝</strong>하고 관리하는 것</li>
+  <li>대표적인 Iac 도구로 Terraform, CloudFormation, Pulumi, Azure ARM Template 등이 있음</li>
+</ul>
+
+<p><img src="https://velog.velcdn.com/images%2Fhyun6ik%2Fpost%2F2113ea0a-2995-4da3-8222-6a54783b9450%2Fimage.png" alt="https://velog.velcdn.com/images%2Fhyun6ik%2Fpost%2F2113ea0a-2995-4da3-8222-6a54783b9450%2Fimage.png" /></p>
+
+<h3 id="형상-관리-configuration-management">형상 관리 (Configuration Management)</h3>
+
+<ul>
+  <li>서버 운영체제 상에 필요한 소프트웨어를 설치하고 원하는 설정으로 관리하는 것</li>
+  <li>Configuration as Code 라고도 불림</li>
+  <li>대표적인 형상 관리 도구로 Ansible, Puppet, Chef, Slat Stack 등이 있음</li>
+</ul>
+
+<h3 id="이미지-빌드-image-build">이미지 빌드 (Image build)</h3>
+
+<ul>
+  <li>AWS EC2, VMware, VirtualBox, Docker 등 여러 플랫폼에서 재사용 가능한 머신 이미지를 빌드하는 것</li>
+  <li>대표적인 이미지 빌더로 패커(Packer), AWS EC2 Image Builder(AMI) 등이 있음</li>
+</ul>
+
+<h3 id="코드로-관리한다는-것--as-code-">코드로 관리한다는 것( …. as code )</h3>
+
+<ul>
+  <li>사람이 수동으로 처리하는 것을 코드로 작성하여 관리
+→ <strong>휴먼 에러 방지</strong> / <strong>재사용성</strong> / <strong>일관성</strong></li>
+  <li>소프트웨어 개발처럼 Git과 같은 버전 관리 시스템(VCS) 활용 가능
+→ <strong>코드 리뷰</strong> / <strong>변경내용 추적</strong> / <strong>버전 관리</strong> / <strong>협업</strong></li>
+  <li>선언형 설정 (Declarative Configuration) (Terraform) 과 절차혈  설정 (Imperative Configuration)(Ansible, Shell Script )의 차이</li>
+</ul>]]></content><author><name>gwemin</name></author><category term="IaC" /><summary type="html"><![CDATA[인프라를 관리하는것은 백엔드 개발자의 숙명...]]></summary></entry></feed>
